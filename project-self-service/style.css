@@ -25,6 +25,7 @@ main > section.items {
     min-width: 300px;
     justify-content: center;
     
+    
 }
 
 section.items .product {
@@ -33,11 +34,13 @@ section.items .product {
     flex: 0 0 calc(33.333% - 24px);
     cursor: pointer;
     text-align: center;
+    box-sizing: border-box;
+    height: 165px;
 }
 
 section.items .product.selected {
     border: 2px solid rgb(29, 134, 233);
-
+    box-sizing: border-box;
 }
 
 section.items .photo img {
