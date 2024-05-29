@@ -21,8 +21,12 @@ const handlingForms = {
     },
     methods: {
       addMember() {
-        this.members.push(this.newMember);
-        this.newMember = {};
+        if(this.newMember.firstName && this.newMember.lastName && this.newMember.instrument) {
+          this.members.push(this.newMember);
+          this.newMember = {};
+        } else {
+          alert('Preencha todos os campos');
+        }
       }
     }
 
