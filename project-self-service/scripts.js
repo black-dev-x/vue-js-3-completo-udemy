@@ -70,6 +70,16 @@ const SelfServiceMachine = {
       message: 'Hello Vue!',
       products,
     }
+  },
+  methods: {
+    getTotal() {
+      return this.products
+        .filter(product => product.active)
+        .reduce((acc, product) => acc + product.price * product.quantity, 0);
+    },
+    removeProduct(index) {
+      this.products[index].active = false;
+    },
   }
 }
 
