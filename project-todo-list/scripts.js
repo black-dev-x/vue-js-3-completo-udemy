@@ -23,10 +23,6 @@ const todoApp = {
     removeTask: function (index) {
       this.tasks.splice(index, 1);
     },
-    toggleDone: function (taskName) {
-      const task = this.tasks.find((task) => task.task === taskName);
-      task.done = !task.done;
-    },
     clearAll: function () {
       this.tasks = [];
     }
