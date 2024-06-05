@@ -1,4 +1,4 @@
-const tasks = [];
+const tasks = JSON.parse(localStorage.getItem('tasks') || '[]')
 
 const todoApp = {
   data() {
@@ -19,13 +19,8 @@ const todoApp = {
       }
       this.tasks.push(generateTask(this.taskName));
       this.taskName = '';
+      localStorage.setItem('tasks', JSON.stringify(this.tasks));
     },
-    removeTask: function (index) {
-      this.tasks.splice(index, 1);
-    },
-    clearAll: function () {
-      this.tasks = [];
-    }
   },
 };
 const generateTask = (task) => ({ task, done: false });
