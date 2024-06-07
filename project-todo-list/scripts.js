@@ -19,8 +19,10 @@ const todoApp = {
       }
       this.tasks.push(generateTask(this.taskName));
       this.taskName = '';
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
     },
+  },
+  updated() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   },
 };
 const generateTask = (task) => ({ task, done: false });
