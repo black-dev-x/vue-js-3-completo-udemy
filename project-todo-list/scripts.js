@@ -22,6 +22,8 @@ const todoApp = {
     },
   },
   updated() {
+    // not very effective, just an example of how to use a lifecycle 
+    // this would be too heavy intensive for a real app
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
   },
 };
