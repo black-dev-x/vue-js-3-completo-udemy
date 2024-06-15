@@ -1,15 +1,25 @@
 <template>
-  <HelloWorld msg="Our first vue js app"/>
+  <div>
+    <h1>Microphones can be used not only to pick up sound, but also to project sound similar to a speaker.</h1>
+
+    <div>
+      <input id="answer1" type="radio" name="options" value="True">
+      <label for="answer1">True</label>
+    </div>
+
+    <div>
+      <input id="answer2" type="radio" name="options" value="False">
+      <label for="answer2">False</label>
+    </div>
+
+    <button class="send">Send</button>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
 
@@ -20,6 +30,23 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px auto;
+  max-width: 960px;
+
+  input[type=radio] {
+   margin: 12px 4px; 
+  }
+
+  button.send {
+    margin-top: 12px;
+    height: 40px;
+    min-width: 120px;
+    padding: 0 16px;
+    color: white;
+    background-color: #1867c0;
+    border: 1px solid #1867c0;
+    cursor: pointer;
+  }
+
 }
 </style>
