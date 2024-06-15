@@ -20,6 +20,18 @@
 
 export default {
   name: 'App',
+  data() {
+    return {
+      questions: []
+    }
+  },
+  created() {
+    this.axios.get('https://opentdb.com/api.php?amount=10&category=18')
+      .then(response => this.questions = response.data.results)
+      .catch(error => {
+        console.log(error);
+      });
+  }
 }
 </script>
 
