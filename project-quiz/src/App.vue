@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Microphones can be used not only to pick up sound, but also to project sound similar to a speaker.</h1>
+    <h1 v-html="question"></h1>
 
     <div>
       <input id="answer1" type="radio" name="options" value="True">
@@ -22,12 +22,25 @@ export default {
   name: 'App',
   data() {
     return {
-      questions: []
+      question: '',
+      incorrectAnswers: [],
+      answer: ''
+    }
+  },
+  computed: {
+    answers() {
+      answers = [...this.incorrectAnswers, this.answer]
+      answers.sort(() => Math.random() - 0.5)
+      return answers()
     }
   },
   created() {
-    this.axios.get('https://opentdb.com/api.php?amount=10&category=18')
-      .then(response => this.questions = response.data.results)
+    this.axios.get('https://opentdb.com/api.php?amount=1&category=18')
+      .then(response => {
+        this.question = response.data.results[0].question
+        this.incorrectAnswers = response.data.results[0].incorrect_answers
+        this.correctAnswer = response.data.results[0].correct_answer
+      })
       .catch(error => {
         console.log(error);
       });
