@@ -2,14 +2,9 @@
   <div>
     <h1 v-html="question"></h1>
 
-    <div>
-      <input id="answer1" type="radio" name="options" value="True">
-      <label for="answer1">True</label>
-    </div>
-
-    <div>
-      <input id="answer2" type="radio" name="options" value="False">
-      <label for="answer2">False</label>
+    <div v-for="(answer, i) in this.answers" :key="i">
+      <input id="answer" type="radio" name="options" value="answer">
+      <label for="answer" v-html="answer"></label>
     </div>
 
     <button class="send">Send</button>
@@ -24,14 +19,14 @@ export default {
     return {
       question: '',
       incorrectAnswers: [],
-      answer: ''
+      correctAnswer: ''
     }
   },
   computed: {
     answers() {
-      answers = [...this.incorrectAnswers, this.answer]
+      const answers = [...this.incorrectAnswers, this.correctAnswer]
       answers.sort(() => Math.random() - 0.5)
-      return answers()
+      return answers
     }
   },
   created() {
