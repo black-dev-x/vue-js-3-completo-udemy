@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div v-if="this.question">
     <h1 v-html="question"></h1>
 
     <div v-for="(answer, i) in this.answers" :key="i">
-      <input id="answer" type="radio" name="options" value="answer">
-      <label for="answer" v-html="answer"></label>
+      <input :id="answer" type="radio" name="options" :value="this.answer" v-model="this.chosenAnswer">
+      <label :for="answer" v-html="answer"></label>
     </div>
 
     <button class="send">Send</button>
@@ -19,7 +19,8 @@ export default {
     return {
       question: '',
       incorrectAnswers: [],
-      correctAnswer: ''
+      correctAnswer: '',
+      chosenAnswer: ''
     }
   },
   computed: {
