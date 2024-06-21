@@ -3,7 +3,7 @@
     <h1 v-html="question"></h1>
 
     <div v-for="(answer, i) in this.answers" :key="i">
-      <input :id="answer" type="radio" name="options" :value="this.answer" v-model="this.chosenAnswer">
+      <input :id="answer" type="radio" name="options" :value="answer" v-model="this.chosenAnswer">
       <label :for="answer" v-html="answer"></label>
     </div>
 
