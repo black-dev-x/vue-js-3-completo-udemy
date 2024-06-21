@@ -3,11 +3,11 @@
     <h1 v-html="question"></h1>
 
     <div v-for="(answer, i) in this.answers" :key="i">
-      <input :id="answer" type="radio" name="options" :value="answer" v-model="this.chosenAnswer">
+      <input :disabled="this.answerSubmitted" :id="answer" type="radio" name="options" :value="answer" v-model="this.chosenAnswer">
       <label :for="answer" v-html="answer"></label>
     </div>
 
-    <button class="send">Send</button>
+    <button @click="this.submitAnswer" class="send">Send</button>
   </div>
 </template>
 
@@ -20,7 +20,22 @@ export default {
       question: '',
       incorrectAnswers: [],
       correctAnswer: '',
-      chosenAnswer: ''
+      chosenAnswer: '',
+      playerScore: 0,
+      computerScore: 0,
+      answerSubmitted: false
+    }
+  },
+  methods: {
+    submitAnswer() {
+      this.answerSubmitted = true
+      if (this.chosenAnswer === this.correctAnswer) {
+        this.playerScore++
+        alert("Correct answer!");
+      } else {
+        this.computerScore++
+        alert("Incorrect answer! " + this.correctAnswer + " is the correct answer.");
+      }
     }
   },
   computed: {
