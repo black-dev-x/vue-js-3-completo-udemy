@@ -12,7 +12,7 @@
     <section class="result" v-if="this.answerSubmitted">
       <p v-if="this.correctAnswer != this.chosenAnswer">❌ I'm sorry, you picked the wrong answer. The answer is "<span v-html="this.correctAnswer"></span>".</p>
       <p v-if="this.correctAnswer == this.chosenAnswer">✅ Congratulations, the answer "<span v-html="this.correctAnswer"></span>" is correct.</p>
-      <button class="send">Next Question</button>
+      <button @click="this.getQuestion()" class="send">Next Question</button>
     </section>
 
   </div>
@@ -43,6 +43,19 @@ export default {
         this.computerScore++
         console.log("Incorrect answer! " + this.correctAnswer + " is the correct answer.");
       }
+    },
+    getQuestion() {
+      this.axios.get('https://opentdb.com/api.php?amount=1&category=18')
+      .then(response => {
+        this.question = response.data.results[0].question
+        this.incorrectAnswers = response.data.results[0].incorrect_answers
+        this.correctAnswer = response.data.results[0].correct_answer
+        this.answerSubmitted = false
+        this.chosenAnswer = ''
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   computed: {
@@ -53,15 +66,7 @@ export default {
     }
   },
   created() {
-    this.axios.get('https://opentdb.com/api.php?amount=1&category=18')
-      .then(response => {
-        this.question = response.data.results[0].question
-        this.incorrectAnswers = response.data.results[0].incorrect_answers
-        this.correctAnswer = response.data.results[0].correct_answer
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.getQuestion()
   }
 }
 </script>
