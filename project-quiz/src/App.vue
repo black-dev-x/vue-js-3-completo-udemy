@@ -7,7 +7,14 @@
       <label :for="answer" v-html="answer"></label>
     </div>
 
-    <button @click="this.submitAnswer" class="send">Send</button>
+    <button v-if="!this.answerSubmitted" @click="this.submitAnswer" class="send">Send</button>
+
+    <section class="result" v-if="this.answerSubmitted">
+      <p v-if="this.correctAnswer != this.chosenAnswer">❌ I'm sorry, you picked the wrong answer. The answer is "<span v-html="this.correctAnswer"></span>".</p>
+      <p v-if="this.correctAnswer == this.chosenAnswer">✅ Congratulations, the answer "<span v-html="this.correctAnswer"></span>" is correct.</p>
+      <button class="send">Next Question</button>
+    </section>
+
   </div>
 </template>
 
@@ -31,10 +38,10 @@ export default {
       this.answerSubmitted = true
       if (this.chosenAnswer === this.correctAnswer) {
         this.playerScore++
-        alert("Correct answer!");
+        console.log("Correct answer!");
       } else {
         this.computerScore++
-        alert("Incorrect answer! " + this.correctAnswer + " is the correct answer.");
+        console.log("Incorrect answer! " + this.correctAnswer + " is the correct answer.");
       }
     }
   },
