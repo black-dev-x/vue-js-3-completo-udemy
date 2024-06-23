@@ -1,4 +1,5 @@
 <template>
+  <ScoreBoard :playerScore="this.playerScore" :computerScore="this.computerScore"/>
   <div v-if="this.question">
     <h1 v-html="question"></h1>
 
@@ -20,8 +21,13 @@
 
 <script>
 
+import ScoreBoard from './components/ScoreBoard.vue'
+
 export default {
   name: 'App',
+  components: {
+    ScoreBoard
+  },
   data() {
     return {
       question: '',
@@ -38,10 +44,8 @@ export default {
       this.answerSubmitted = true
       if (this.chosenAnswer === this.correctAnswer) {
         this.playerScore++
-        console.log("Correct answer!");
       } else {
         this.computerScore++
-        console.log("Incorrect answer! " + this.correctAnswer + " is the correct answer.");
       }
     },
     getQuestion() {
