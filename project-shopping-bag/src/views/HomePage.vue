@@ -30,7 +30,7 @@
     name: 'HomePage',
     data() {
       return {
-        
+        products: this.$store.state.products
       }
     },
   
