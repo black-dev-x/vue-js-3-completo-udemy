@@ -6,13 +6,15 @@ export default createStore({
     products: []
   },
   mutations: {
-    
+    setProducts(state, products) {
+      state.products = products
+    }
   },
   actions: {
-    getProducts() {
+    getProducts({ commit }) {
       axios.get('https://fakestoreapi.com/products')
         .then(response => {
-          console.log(response.data)
+          commit('setProducts', response.data)
         })
     }
   },
