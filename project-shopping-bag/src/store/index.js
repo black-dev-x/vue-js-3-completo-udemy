@@ -1,15 +1,16 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
 
 export default createStore({
   state: {
-    products: [1,2,3]
+    products: []
   },
   mutations: {
     
   },
   actions: {
-    loadProducts() {
-      this.axios.get('https://fakestoreapi.com/products')
+    getProducts() {
+      axios.get('https://fakestoreapi.com/products')
         .then(response => {
           console.log(response.data)
         })

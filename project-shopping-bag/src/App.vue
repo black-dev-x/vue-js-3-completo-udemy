@@ -10,10 +10,7 @@
 
   export default {
     created() {
-      this.axios.get('https://fakestoreapi.com/products')
-        .then(response => {
-          console.log(response.data)
-        })
+      this.$store.dispatch('getProducts');
     }
   }
   
