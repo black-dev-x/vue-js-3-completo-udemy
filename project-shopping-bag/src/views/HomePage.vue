@@ -1,8 +1,8 @@
 <template>
     <div class="home">
       <div class="products">
-        <div v-for="product in products" class="product">
-          <div class="product-image" style="background-image: url('https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg');"></div>
+        <div v-for="product in products" :key="product.id" class="product">
+          <div class="product-image" :style="{backgroundImage: `url(${product.image})`}"></div>
           <h4>{{product.title}}</h4>
           <p class="price">US$ {{product.price}}</p>
           <button>Add to bag</button>
