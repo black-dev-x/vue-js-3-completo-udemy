@@ -4,8 +4,8 @@
         <div v-for="product in products" :key="product.id" class="product">
           <div class="product-image" :style="{backgroundImage: `url(${product.image})`}"></div>
           <h4>{{product.title}}</h4>
-          <p class="price">US$ {{product.price}}</p>
-          <button>Add to bag</button>
+          <p class="price">US$ {{product.price.toFixed(2)}}</p>
+          <button @click="addToBag(product)">Add to bag</button>
         </div>
       </div>
     </div>
@@ -18,10 +18,15 @@
     computed: {
       products() {
         return this.$store.state.products
+      },
+      productsInBag() {
+        return this.$store.state.productsInBag
       }
     },
     methods: {
-     
+     addToBag(product) {
+       this.$store.dispatch('addToBag', product)
+     }
     }
   }
   </script>
