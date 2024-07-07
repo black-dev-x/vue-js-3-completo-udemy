@@ -12,6 +12,9 @@ export default createStore({
     },
     addToBag(state, product) {
       state.productsInBag = [...state.productsInBag, product]
+    },
+    removeFromBag(state, product) {
+      state.productsInBag = state.productsInBag.filter(p => p.id !== product.id)
     }
   },
   actions: {
@@ -25,6 +28,9 @@ export default createStore({
       product.quantity = 1
       commit('addToBag', product)
     },
+    removeFromBag({ commit }, product) {
+      commit('removeFromBag', product)
+    }
   },
   modules: {
   }

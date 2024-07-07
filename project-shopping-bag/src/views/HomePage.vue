@@ -1,11 +1,12 @@
 <template>
     <div class="home">
       <div class="products">
-        <div v-for="product in products" :key="product.id" class="product">
+        <div v-for="product in products" :key="product.id" class="product" :class="{ inBag: isInBag(product) }">
           <div class="product-image" :style="{backgroundImage: `url(${product.image})`}"></div>
           <h4>{{product.title}}</h4>
           <p class="price">US$ {{product.price.toFixed(2)}}</p>
-          <button @click="addToBag(product)">Add to bag</button>
+          <button v-if="!isInBag(product)" @click="addToBag(product)">Add to bag</button>
+          <button v-else class="remove" @click="removeFromBag(product)">Remove from bag</button>
         </div>
       </div>
     </div>
@@ -26,6 +27,12 @@
     methods: {
      addToBag(product) {
        this.$store.dispatch('addToBag', product)
+     },
+     isInBag(product) {
+       return !!this.productsInBag.find(p => p.id === product.id)
+     },
+     removeFromBag(product) {
+       this.$store.dispatch('removeFromBag', product)
      }
     }
   }
@@ -45,6 +52,8 @@
           flex: 0 0 30%;
           box-sizing: border-box;  
           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+          border: 1px solid #ffff;
+          transition: border 0.2s ease-in-out;
           padding: 16px;
           margin: 8px;
           height: 360px;
