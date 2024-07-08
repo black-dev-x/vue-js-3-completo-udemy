@@ -20,9 +20,7 @@ export default createStore({
   actions: {
     getProducts({ commit }) {
       axios.get('https://fakestoreapi.com/products')
-        .then(response => {
-          commit('setProducts', response.data)
-        })
+        .then(response => commit('setProducts', response.data))
     },
     addToBag({ commit }, product) {
       product.quantity = 1
