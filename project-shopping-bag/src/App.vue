@@ -7,16 +7,15 @@
 </template>
 
 <script>
-
+  import { mapState } from 'vuex'
   export default {
     created() {
       this.$store.dispatch('getProducts');
     },
     computed: mapState({
-      products: state => state.products
+      products: state => state.productsInBag,
     })
   }
-  
 </script>
 
 

@@ -13,7 +13,7 @@
   </template>
   
   <script>
-import { mapState } from 'vuex'
+  import { mapState } from 'vuex'
 
   
   export default {
@@ -27,7 +27,9 @@ import { mapState } from 'vuex'
        return !!this.productsInBag.find(p => p.id === product.id)
      },
      removeFromBag(product) {
-       this.$store.dispatch('removeFromBag', product)
+      if(confirm(`Are you sure you want to remove "${product.title}" from your bag?`)){
+        this.$store.dispatch('removeFromBag', product)
+      }
      }
     }
   }
