@@ -12,11 +12,9 @@
     created() {
       this.$store.dispatch('getProducts');
     },
-    computed: {
-      products() {
-        return this.$store.state.productsInBag;
-      }
-    }
+    computed: mapState({
+      products: state => state.products
+    })
   }
   
 </script>
