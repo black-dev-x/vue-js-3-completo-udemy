@@ -1,6 +1,6 @@
 <template>
     <div class="basket">
-      <div class="items">
+      <div class="items" v-if="productsInBag.length">
   
         <div v-for="item in productsInBag" :key="item.id" class="item">
           <div @click="removeProduct(item)" class="remove">Remove item</div>
@@ -18,6 +18,7 @@
         <div class="grand-total"> Grand Total: US$ {{productsInBag.reduce((acc, next) => acc + next.quantity * next.price, 0).toFixed(2)}}</div>
   
       </div>
+      <div v-else>No items in your bag</div>
     </div>
   </template>
   
