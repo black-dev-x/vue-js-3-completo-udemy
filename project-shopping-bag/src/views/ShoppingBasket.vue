@@ -3,19 +3,19 @@
       <div class="items">
   
         <div v-for="item in productsInBag" :key="item.id" class="item">
-          <div class="remove">Remove item</div>
+          <div @click="removeProduct(item)" class="remove">Remove item</div>
           <div class="photo"><img :src="item.image" alt=""></div>
           <div class="description">{{ item.title }}</div>
           <div class="price">
             <span class="quantity-area">
-              <button disabled="">-</button>
+              <button :disabled="item.quantity <= 1" @click="item.quantity--">-</button>
               <span class="quantity">{{ item.quantity }}</span>
-              <button>+</button>
+              <button @click="item.quantity++">+</button>
             </span>
-            <span class="amount">US$ {{item.price}}</span>
+            <span class="amount">US$ {{item.price.toFixed(2)}}</span>
           </div>
         </div>
-        <div class="grand-total"> Grand Total: US$ 22.30</div>
+        <div class="grand-total"> Grand Total: US$ {{productsInBag.reduce((acc, next) => acc + next.quantity * next.price, 0).toFixed(2)}}</div>
   
       </div>
     </div>
@@ -29,7 +29,9 @@ import { mapState } from 'vuex'
     name: 'ShoppingBasket',
     computed: mapState(['productsInBag']),
     methods: {
-     
+     removeProduct(product) {
+       this.$store.dispatch('removeFromBag', product)
+     },
     },
    
   }
