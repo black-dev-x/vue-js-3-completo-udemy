@@ -11,6 +11,7 @@
   export default {
     created() {
       this.$store.dispatch('getProducts');
+      this.$store.dispatch('loadBag');
     },
     computed: mapState({
       products: state => state.productsInBag,
