@@ -2,16 +2,18 @@
 
 import { ref, reactive } from 'vue'
 
-//ref is used for primitive values
-let count = ref(0)
-
-
 //reactive is used for objects (this is just a convention)
+let id = 4
 let courses = [
   { id: 1, title: 'Javascript' },
   { id: 2, title: 'React' },
   { id: 3, title: 'Vue' }
 ]
+const addCourse = () => {
+  courses.push({ id, title: courseName.value })
+  courseName.value = ''
+}
+let courseName = ref('')
 
 </script>
 
@@ -21,8 +23,9 @@ let courses = [
     <ul>
       <li v-for="course in courses" :key="course.id">{{ course.title }}</li>
     </ul>
-    <button @click="count++">Increment</button>
   </div>
+  <br>
+  <input type="text" v-model="courses[0].title">
 </template>
 
 <style scoped>
