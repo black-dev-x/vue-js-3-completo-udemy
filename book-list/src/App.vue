@@ -25,7 +25,8 @@ let courseName = ref('')
     </ul>
   </div>
   <br>
-  <input type="text" v-model="courses[0].title">
+  <input type="text" v-model="courseName">
+  <button @click="addCourse">Add Course</button>
 </template>
 
 <style scoped>
