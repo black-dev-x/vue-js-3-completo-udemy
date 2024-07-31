@@ -1,4 +1,6 @@
 <script setup>
+import Books from './components/Books.vue'
+
 const books = [
   {
     id: 1,
@@ -37,29 +39,11 @@ const books = [
 
 <template>
   <div class="container">
-    <h1>📖 Meus Livros</h1>
+    <h1>📖 My Books</h1>
     <div class="header-btns">
-      <button class="btn"> Adicionar Livro + </button>
+      <button class="btn"> Add book + </button>
     </div>
-
-    <div class="books-container">
-      <div class="books-list">
-        <div v-for="book in books" :key="book.id" class="book">
-          <div class="book-cover">
-            <img :src="book.cover" />
-            <button>
-              <i class="fa-solid fa-eye"></i>
-              <span>Ainda não li</span>
-            </button>
-          </div>
-          <div class="book-details">
-            <p class="book-author">{{ book.author }}</p>
-            <h3 class="book-title">{{ book.title }}</h3>
-            <p><i class="fa-solid fa-hashtag icon"></i>{{ book.isbn }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Books :books="books"/>
   </div>
 </template>
 
