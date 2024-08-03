@@ -11,7 +11,7 @@
           </div>
           <div class="book-cover">
             <img :src="book.cover" />
-            <button @click="$emit('toggleIsRead')" :class="{isRead: book.isRead}">
+            <button @click="$emit('toggleIsRead', book.id)" :class="{isRead: book.isRead}">
               <span v-if="book.isRead">Mark as Unread</span>
               <span  v-else>Mark as Read</span>
             </button>
