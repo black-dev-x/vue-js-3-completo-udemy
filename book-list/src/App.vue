@@ -43,7 +43,7 @@ const books = [
     <div class="header-btns">
       <button class="btn"> Add book + </button>
     </div>
-    <Books :books="books"/>
+    <Books @toggleIsRead="toggleIsRead" :books="books"/>
   </div>
 </template>
 
