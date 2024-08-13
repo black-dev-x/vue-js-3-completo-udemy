@@ -2,18 +2,26 @@
 import { computed, defineProps } from 'vue'
 
   const props = defineProps(['books'])
-  const progress = computed(() => {
-    const total = props.books.length
-    const finished = props.books.filter(book => book.isRead).length
-    return Math.round((finished / total) * 100)
+
+  const finished = computed(() => {
+    return props.books.filter(book => book.isRead).length
   })
+
+  const total = computed(() => {
+    return props.books.length
+  })
+
+  const progress = computed(() => {
+    return Math.round((finished.value / total.value) * 100)
+  })
+
 </script>
 
 <template>
-  <div class="book-progress">
-    <div class="progress-bar">
-      <div class="progress" :style="{ width: `${progress}%` }"></div>
-    </div>
-    <p>{{ progress }}%</p>
+  <div class="books-read">
+    <label for="progress">Your Progress </label>
+    <progress id="progress" :value="progress" max="100"></progress>
+    <p>{{ finished }} of {{ total }} books finished</p>
+    
   </div>
 </template>
